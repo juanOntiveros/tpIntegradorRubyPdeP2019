@@ -1,0 +1,2 @@
+class CategoriaNoPuedeEvolucionarError < StandardError
+end
