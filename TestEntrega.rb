@@ -27,7 +27,7 @@ class TestEntrega < Minitest::Test
         @trama_nave = Trama.new([@tomas,@maria],@nave)
     end
 
-    def test_al_consultar_la_felicidad_de_lucio_me_da_5
+    def test_al_consultar_la_felicidad_de_lucio_me_da_7_5
         assert_equal 7.5, @lucio.felicidad
     end
 
@@ -43,13 +43,13 @@ class TestEntrega < Minitest::Test
         assert_equal 0, @maria.felicidad
     end
 
-    def test_al_agregar_a_lucio_y_pedro_como_amigos_tomas_tiene_felicidad_igual_a_100
+    def test_al_agregar_a_lucio_y_pedro_como_amigos_tomas_tiene_felicidad_igual_a_151
         @tomas.agregar_amigo!(@lucio)
         @tomas.agregar_amigo!(@pedro)
         assert_equal 151, @tomas.felicidad
     end
 
-    def test_al_agregar_a_lucio_y_pedro_como_amigos_maria_tiene_felicidad_igual_a_1250
+    def test_al_agregar_a_lucio_y_pedro_como_amigos_maria_tiene_felicidad_igual_a_377_5
         @maria.agregar_amigo!(@lucio)
         @maria.agregar_amigo!(@pedro)
         assert_equal 377.5, @maria.felicidad
@@ -83,7 +83,7 @@ class TestEntrega < Minitest::Test
         assert_equal 40, @maria.minutos_restantes
     end
 
-    def test_al_iteractuar_con_dos_personajes_lucio_queda_con_energia_igual_a_25
+    def test_al_iteractuar_con_dos_personajes_lucio_queda_con_energia_igual_a_37
         @lucio.interactuar_con_muchos!(@personajes)
         assert_equal 37, @lucio.energia
     end
@@ -98,7 +98,7 @@ class TestEntrega < Minitest::Test
         assert_equal 250, @maria.energia
     end
 
-    def test_al_iteractuar_con_dos_personajes_maria_queda_con_energia_igual_a_250
+    def test_al_iteractuar_con_dos_personajes_maria_queda_con_30_mintuos_restantes
         @maria.interactuar_con_muchos!(@personajes)
         assert_equal 30, @maria.minutos_restantes
     end
@@ -199,7 +199,7 @@ class TestEntrega < Minitest::Test
         end
     end
 
-    def test_la_emotividad_de_partida_de_pool_es_de_1664
+    def test_la_emotividad_de_partida_de_pool_es_de_1560
         assert_equal 1560, @partida_de_pool.emotividad
     end
 
