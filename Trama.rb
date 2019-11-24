@@ -15,7 +15,7 @@ class Trama
         @escenario.fama / felicidad_personajes
     end
 
-    def filtrar_rebeldes_muertos
+    def matar_y_filtrar_rebeldes
         matar_a_todos_los_rebeldes.filter{|personaje| personaje.esta_muerto?}
     end
 
@@ -30,12 +30,12 @@ class Trama
     end
 
     def renovar!
-        @escenario.evolucionar
-        @personajes = filtrar_rebeldes_muertos
+        @escenario.evolucionar!
+        @personajes = matar_y_filtrar_rebeldes
     end
 
     def cruzar!(otraTrama)
-        personajes_conocen_escenario(otraTrama.escenario)
+        personajes_conocen_escenario!(otraTrama.escenario)
         cruzar_personajes!(otraTrama.personajes)
     end
 

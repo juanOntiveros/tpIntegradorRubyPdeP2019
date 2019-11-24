@@ -23,8 +23,8 @@ class TestEntrega < Minitest::Test
 
         @partida_de_pool = Recuerdo.new("Partida de Pool", @bar)
 
-        #Resta continuar las pruebas de trama
-        @trama_bar = Trama.new([],@bar)
+        @trama_bar = Trama.new([@lucio, @pedro],@bar)
+        @trama_nave = Trama.new([@tomas,@maria],@nave)
     end
 
     def test_al_consultar_la_felicidad_de_lucio_me_da_5
@@ -199,8 +199,53 @@ class TestEntrega < Minitest::Test
         end
     end
 
-    def la_emotividad_de_partida_de_pool_es_de_1664
-        assert_equal 1664, @partida_de_pool.emotividad
+    def test_la_emotividad_de_partida_de_pool_es_de_1664
+        assert_equal 1560, @partida_de_pool.emotividad
+    end
+
+    def test_felicidad_personajes_de_trama_bar_es_igual_a_7_55
+        assert_equal 7.55, @trama_bar.felicidad_personajes
+    end
+
+    def test_felicidad_personajes_de_trama_nave_es_igual_a_0
+        assert_equal 0, @trama_nave.felicidad_personajes
+    end
+
+    def test_complejidad_de_trama_bar_es_igual_a_13_77
+        assert_equal 13.77, @trama_bar.complejidad.truncate(2)
+    end
+
+    def test_matar_y_filtrar_rebeldes_de_la_trama_bar_hace_que_quede_un_personaje
+        assert_equal 1, @trama_bar.matar_y_filtrar_rebeldes.size
+    end
+
+    def test_renovar_trama_bar_hace_que_el_escenario_cambie_de_categoria_a_Estandar
+        @trama_bar.renovar!
+        assert_equal Estandar, @trama_bar.escenario.categoria
+    end
+
+    def test_cruzar_trama_nave_con_trama_bar_hace_que_maria_tenga_energia_396
+        @trama_nave.cruzar!(@trama_nave)
+        assert_equal 224, @maria.energia
+    end
+
+    def test_cruzar_trama_nave_con_trama_bar_hace_que_maria_tenga_20_minutos_restantes
+        @trama_nave.cruzar!(@trama_nave)
+        assert_equal 20, @maria.minutos_restantes
+    end
+
+    def test_cruzar_trama_nave_con_trama_bar_hace_que_tomas_tenga_energia_12
+        @trama_nave.cruzar!(@trama_nave)
+        assert_equal 12, @tomas.energia
+    end
+
+    def test_cruzar_trama_nave_con_trama_bar_hace_que_tomas_no_tenga_minutos_restantes
+        @trama_nave.cruzar!(@trama_nave)
+        assert @tomas.minutos_restantes < 0
+    end
+
+    def test_trama_bar_no_es_aburrida
+        refute @trama_bar.es_aburrida?
     end
 
 end
